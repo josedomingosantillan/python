@@ -1,0 +1,134 @@
+create database dbUbam;
+
+use dbUbam;
+
+create table tbl_cat_sexo(
+id int primary key auto_increment,
+nombre varchar(50),
+activo bool
+);
+
+create table tbl_cat_estado(
+id int primary key auto_increment,
+nombre varchar(50),
+activo bool
+);
+
+create table tbl_cat_municipio(
+id int primary key auto_increment,
+nombre varchar(50),
+idEstado int,
+activo bool,
+
+foreign key (idEstado) references tbl_cat_estado(id)
+);
+
+
+create table tbl_ope_direccion(
+id int primary key auto_increment,
+calle text,
+numInt varchar(5),
+nomExt varchar(5),
+cp varchar(10),
+colonia text,
+idMunicipio int,
+activo bool,
+foreign key (idMunicipio) references tbl_cat_municipio(id)
+);
+
+create table tbl_ope_contacto(
+id int primary key auto_increment,
+email varchar(150),
+celular varchar(15),
+numRecados varchar(15),
+numCasa varchar(15),
+activo bool
+);
+
+create table tbl_cat_turno(
+id int primary key auto_increment,
+descripcion varchar(50)
+);
+
+create table tbl_ope_persona(
+id int primary key auto_increment,
+nombre varchar(80),
+apellidoPaterno varchar(50),
+apellidoMaterno varchar(50),
+fechaNacimiento varchar(18),
+idSexo int,
+idDireccion int,
+idContacto int,
+idTurno int,
+activo bool, 
+
+foreign key (idSexo) references tbl_cat_sexo(id),
+foreign key (idDireccion) references tbl_ope_direccion(id),
+foreign key (idContacto) references tbl_ope_contacto(id),
+foreign key (idTurno) references tbl_cat_turno(id)
+);
+
+create table tbl_cat_grupo(
+id int primary key auto_increment,
+nombre varchar(50),
+descripcion varchar(50),
+idTurno int,
+foreign key (idTurno) references tbl_cat_turno(id)
+);
+
+create table tbl_cat_carreras(
+id int primary key auto_increment,
+nombre varchar(50),
+idEncargado int,
+foreign key (idEncargado) references tbl_ope_persona(id)
+);
+
+create table tbl_ope_alumno(
+id int primary key auto_increment,
+nombre varchar(80),
+apellidoPaterno varchar(50),
+apellidoMaterno varchar(50),
+fechaNacimiento varchar(18),
+idSexo int,
+idDireccion int,
+idContacto int,
+idTurno int,
+idCarrera int,
+activo bool, 
+
+foreign key (idSexo) references tbl_cat_sexo(id),
+foreign key (idDireccion) references tbl_ope_direccion(id),
+foreign key (idContacto) references tbl_ope_contacto(id),
+foreign key (idTurno) references tbl_cat_turno(id),
+foreign key (idCarrera) references tbl_cat_carreras(id)
+);
+
+create table tbl_cat_materia(
+id int primary key auto_increment,
+nombre varchar(50)
+);
+
+create table tbl_cat_grado(
+id int primary key auto_increment,
+nombre varchar(50)
+);
+
+create table tbl_rel_grupo_materia(
+id int primary key auto_increment,
+idGrupo int,
+idMateria int,
+
+foreign key (idGrupo) references tbl_cat_grupo(id),
+foreign key (idMateria) references tbl_cat_materia(id)
+);
+
+create table rel_alumno_carrera_materia(
+id int primary key auto_increment,
+idMateria int,
+idAlumno int,
+idCarrera int,
+idEncargado int,
+foreign key (idCarrera) references tbl_cat_carreras(id),
+foreign key (idMateria) references tbl_cat_materia(id),
+foreign key (idEncargado) references tbl_ope_alumno(id)
+);

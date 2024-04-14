@@ -1,0 +1,35 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleado</title>
+    {% bootstrap_css %}
+</head>
+<body>
+<center>
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h1>DATOS EMPLEADO</h1>
+        <p><strong>Nombre: </strong>{{ nombre }}</p>
+        <p><strong>Edad: </strong> {{ edad }} anios </p>
+        <p><strong>Fecha Actual: </strong>{{ fecha }}</p>
+        <p><strong>Lenguajes: </strong> {{ lenguajes.1 }}</p>
+
+    </div>
+</center>
+<ul>
+    <li>{{ lenguajes.0 }}</li>
+    <li>{{ lenguajes.1 }}</li>
+    <li>{{ lenguajes.2 }}</li>
+    <li>{{ lenguajes.3 }}</li>
+</ul>
+<p><strong>Ciclos html with Python</strong></p>
+<ul>
+    {% for lenguaje in lenguajes %}
+        <li>{{ lenguaje }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

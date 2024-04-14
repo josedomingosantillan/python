@@ -1,0 +1,163 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Operaciones básicas</title>
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
+    {% bootstrap_css %}
+    <style>
+        .title {
+            font-size: 48px;
+        }
+
+        .fa {
+            color: black;
+        }
+    </style>
+    <script>
+        function calcular() {
+            let number1 = parseFloat(document.getElementById('number1').value),
+                number2 = parseFloat(document.getElementById('number2').value),
+                operation = document.querySelector('input[name="operation"]:checked').value,
+                resultadolabel = document.getElementById('resultado'), result = 0;
+
+            if (number1 == "" || number2=="") {
+                alert("Debes insertar dos números");
+                return;
+            }
+            switch (operation) {
+                case 'sumar':
+                    result = number1 + number2;
+                    break;
+                case 'restar':
+                    result = number1 - number2;
+                    break;
+                case 'multiplicar':
+                    result = number1 * number2;
+                    break;
+                case 'dividir':
+                    if (number2 !== 0) {
+                        result = number1 / number2;
+                    } else {
+                        result = "No se puede dividir por cero";
+                        resultadolabel.innerText = result;
+                        return;
+                    }
+                    break;
+                default:
+                    result = "Operación no válida";
+                    resultadolabel.innerText = result;
+                    return
+            }
+
+            resultadolabel.innerText = "El resultado es: " + result;
+        }
+    </script>
+</head>
+<body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">About</h4>
+                    <p class="text-muted">Add some information about the album below, the author, or any other
+                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
+                        Then, link them off to some social networking sites or contact information.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                        <li><a href="#" class="text-white">Like on Facebook</a></li>
+                        <li><a href="#" class="text-white">Email me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <center><strong><h1 class="navbar-brand d-flex align-items-center title">Calculadora</h1></strong></center>
+        </div>
+    </div>
+</header>
+<main>
+
+    <section class="py-1 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Realizar operaciones.</h1>
+                <p class="lead text-muted">Podrás realizar operaciones básicas, tales como sumas, restas,
+                    multiplicaciones y divisiones.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="album py-1 bg-light">
+        <div class="container">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h5 class="card-title">Selecciona una operación</h5>
+                </div>
+                <div class="card-body">
+                    <form id="calculatorForm">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="number1" class="form-label">Primer número:</label>
+                                    <input type="text" class="form-control" id="number1" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="number2" class="form-label">Segundo número:</label>
+                                    <input type="text" class="form-control" id="number2">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-8 mx-auto">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="operation" id="sumar"
+                                           value="sumar" checked>
+                                    <label class="form-check-label" for="sumar">Sumar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="operation" id="restar"
+                                           value="restar">
+                                    <label class="form-check-label" for="restar">Restar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="operation" id="multiplicar"
+                                           value="multiplicar">
+                                    <label class="form-check-label" for="multiplicar">Multiplicar</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="operation" id="dividir"
+                                           value="dividir">
+                                    <label class="form-check-label" for="dividir">Dividir</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 py-2">
+                                <center>
+                                    <div class="">
+                                        <button type="button" class="btn btn-xs btn-primary" onclick="calcular()">
+                                            Calcular
+                                        </button>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    <label for="" id="resultado"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

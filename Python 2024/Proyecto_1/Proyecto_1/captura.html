@@ -1,0 +1,80 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formularios</title>
+    {% bootstrap_css %}
+</head>
+<body>
+
+<div class="row">
+    <div class="col-3 offset-5">
+        <center>
+            <h1>Captura de información.</h1>
+        </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3 offset-5">
+        <form action="{% url 'informacion' %}" method="post">
+            {% csrf_token %}
+            <label class="mt-3 ml-3" for="inputName"><strong>Nombre:</strong></label>
+            <input type="text" class="form-control mt-1 ml-3" id="inputName" name="inputName"
+                   placeholder="José Manuel.">
+
+            <label class="mt-3 ml-3" for="inputApellidoPaterno"><strong>Apellido Paterno:</strong></label>
+            <input type="text" class="form-control mt-1 ml-3" id="inputApellidoPaterno" name="inputApellidoPaterno"
+                   placeholder="Pedraza.">
+
+            <label class="mt-3 ml-3" for="inputApellidoMaterno"><strong>Apellido Materno:</strong></label>
+            <input type="text" class="form-control mt-1 ml-3" id="inputApellidoMaterno" name="inputApellidoMaterno"
+                   placeholder="González.">
+
+            <label class="mt-3 ml-3" for="inputFechaNac"><strong>Apellido Paterno:</strong></label>
+            <input type="date" class="form-control mt-1 ml-3" id="inputFechaNac" name="inputFechaNac">
+
+            <label class="mt-3 ml-3" for="inputName"><strong>Sexo:</strong></label>
+            <div class="form-check mt-1 ml-3">
+                <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault1"
+                       value="masculino" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Masculino
+                </label>
+            </div>
+            <div class="form-check mt-1 ml-3">
+                <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault2"
+                       value="femenino">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Femenino
+                </label>
+            </div>
+
+            <div class="form-check mt-1 ml-3">
+                <input class="form-check-input" type="radio" name="sexo" id="flexRadioDefault3" value="otro">
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Otro
+                </label>
+            </div>
+
+            <label class="mt-3 ml-3" for="carreras"><strong>Carrera:</strong></label>
+            <select name="carreras" id="carreras" class="select2-dropdown form-control  mt-1 ml-3">
+                <option value="0">Selecciona una carrera</option>
+                <option value="Ingenieria en Sistemas Computacionales">Ingenieria en Sistemas Computacionalesa</option>
+                <option value="Ingenieria en Logistica">Ingenieria en Logistica</option>
+                <option value="Pedagogía">Pedagogía</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Arquitectura">Arquitectura</option>
+            </select>
+
+            <center>
+                <button class="btn btn-info mt-3 ml-3" onclick="enviar()">Mandar info</button>
+            </center>
+        </form>
+    </div>
+</div>
+</body>
+</html>

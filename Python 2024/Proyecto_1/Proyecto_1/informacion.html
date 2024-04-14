@@ -1,0 +1,45 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Información</title>
+    {% bootstrap_css %}
+</head>
+<body>
+
+<div class="row">
+    <div class="col-3 offset-5">
+        <center>
+            <h1>Información capturada.</h1>
+        </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3 offset-5">
+        <div class="card" style="width: 18rem;">
+            <img src="https://static.vecteezy.com/system/resources/previews/019/879/198/original/user-icon-on-transparent-background-free-png.png"
+                 class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Datos personales</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Nombre: {{ nombre }} {{ apellido_pa }} {{ apellido_ma }}</strong>
+                </li>
+                <li class="list-group-item"><strong> Fecha de Nacimiento: {{ fecha }}</strong></li>
+                <li class="list-group-item"><strong>Sexo: {{ sexo }}</strong></li>
+                <li class="list-group-item"><strong>Carrera: {{ carrera }} </strong></li>
+            </ul>
+            <div class="card-body">
+                <center>
+                    <a href="./captura.html" class="btn btn-warning card-link">Regresar</a>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
